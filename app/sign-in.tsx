@@ -1,20 +1,41 @@
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
-  Button,
+  Alert,
   Image,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import images from "@/constants/images";
-import icons from "@/constants/icons";
 
-const SignIn = () => {
+import { login } from "@/lib/appwrite";
+import { Redirect } from "expo-router";
+import { useGlobalContext } from "@/lib/global-provider";
+import icons from "@/constants/icons";
+import images from "@/constants/images";
+
+const Auth = () => {
+  const { refetch, loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/" />;
+
+  const handleLogin = async () => {
+    const result = await login();
+    if (result) {
+      refetch();
+    } else {
+      Alert.alert("Error", "Failed to login");
+    }
+  };
+
   return (
     <SafeAreaView className="bg-white h-full">
-      <ScrollView contentContainerStyle={{ height: "100%" }}>
+      <ScrollView
+        contentContainerStyle={{
+          height: "100%",
+        }}
+      >
         <Image
           source={images.onboarding}
           className="w-full h-4/6"
@@ -36,8 +57,8 @@ const SignIn = () => {
           </Text>
 
           <TouchableOpacity
-            activeOpacity={0.5}
-            className="bg-white  shadow-md shadow-zinc-300 rounded-full w-full py-4 mt-5"
+            onPress={handleLogin}
+            className="bg-white shadow-md shadow-zinc-300 rounded-full w-full py-4 mt-5"
           >
             <View className="flex flex-row items-center justify-center">
               <Image
@@ -56,4 +77,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Auth;
