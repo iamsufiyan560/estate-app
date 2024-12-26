@@ -15,7 +15,7 @@ import { useGlobalContext } from "@/lib/global-provider";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
 
-const Auth = () => {
+const SignIn = () => {
   const { refetch, loading, isLogged } = useGlobalContext();
 
   if (!loading && isLogged) return <Redirect href="/" />;
@@ -77,4 +77,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default SignIn;
