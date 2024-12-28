@@ -4,10 +4,10 @@ import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import icons from "@/constants/icons";
 import { useGlobalContext } from "@/lib/global-provider";
-import Search from "@/app/components/Search";
+import Search from "@/components/Search";
 import { cards, featuredCards } from "@/constants/data";
-import { Card, FeaturedCard } from "@/app/components/Cards";
-import Filters from "@/app/components/Filters";
+import { Card, FeaturedCard } from "@/components/Cards";
+import Filters from "@/components/Filters";
 
 const Index = () => {
   const { user } = useGlobalContext();
