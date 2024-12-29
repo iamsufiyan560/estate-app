@@ -1,6 +1,12 @@
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Button,
+} from "react-native";
 import React from "react";
-import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import icons from "@/constants/icons";
 import { useGlobalContext } from "@/lib/global-provider";
@@ -8,11 +14,13 @@ import Search from "@/components/Search";
 import { cards, featuredCards } from "@/constants/data";
 import { Card, FeaturedCard } from "@/components/Cards";
 import Filters from "@/components/Filters";
+import seed from "@/lib/seed";
 
 const Index = () => {
   const { user } = useGlobalContext();
   return (
     <SafeAreaView className="h-full bg-white">
+      <Button title="Seed" onPress={seed} />
       <FlatList
         data={cards}
         numColumns={2}
