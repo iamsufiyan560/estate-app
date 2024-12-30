@@ -4,7 +4,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Models } from "react-native-appwrite";
 
 interface Props {
-  item: any;
+  item: Models.Document;
   onPress?: () => void;
 }
 
@@ -14,7 +14,7 @@ export const FeaturedCard = ({ item, onPress }: Props) => {
       onPress={onPress}
       className="flex flex-col items-start w-60 h-80 relative"
     >
-      <Image source={item.image} className="size-full rounded-2xl" />
+      <Image source={{ uri: item.image }} className="size-full rounded-2xl" />
 
       <Image
         source={images.cardGradient}
@@ -41,7 +41,7 @@ export const FeaturedCard = ({ item, onPress }: Props) => {
 
         <View className="flex flex-row items-center justify-between w-full">
           <Text className="text-xl font-rubik-extrabold text-white">
-            {item.price}
+            ${item.price}
           </Text>
           <Image source={icons.heart} className="size-5" />
         </View>
@@ -63,7 +63,7 @@ export const Card = ({ item, onPress }: Props) => {
         </Text>
       </View>
 
-      <Image source={item.image} className="w-full h-40 rounded-lg" />
+      <Image source={{ uri: item.image }} className="w-full h-40 rounded-lg" />
 
       <View className="flex flex-col mt-2">
         <Text className="text-base font-rubik-bold text-black-300">
@@ -75,7 +75,7 @@ export const Card = ({ item, onPress }: Props) => {
 
         <View className="flex flex-row items-center justify-between mt-2">
           <Text className="text-base font-rubik-bold text-primary-300">
-            {item.price}
+            ${item.price}
           </Text>
           <Image
             source={icons.heart}
